@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230429 12:07:40.075" rpa="false" schemaversion="3">
+<suite id="s1" name="Bkp" source="C:\bkp">
+<suite id="s1-s1" name="DatabaseConnection" source="C:\bkp\DatabaseConnection.robot">
+<test id="s1-s1-t1" name="Verify row count is 26 for postal code 98011" line="20">
+<kw name="Connect DB">
+<kw name="Connect To Database" library="DatabaseLibrary">
+<arg>pymssql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_Password}</arg>
+<arg>${DB_Host}</arg>
+<arg>${DB_Port}</arg>
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
+connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
+<msg timestamp="20230429 12:07:40.173" level="INFO">Connecting using : pymssql.connect(database=AdventureWorks2019, user=robot, password=12345, host=DESKTOP-M531GVI, port=1433) </msg>
+<status status="PASS" starttime="20230429 12:07:40.162" endtime="20230429 12:07:40.247"/>
+</kw>
+<status status="PASS" starttime="20230429 12:07:40.162" endtime="20230429 12:07:40.247"/>
+</kw>
+<kw name="Execute Sql String" library="DatabaseLibrary">
+<arg>Select count(*) from AdventureWorks2019.Person.Address</arg>
+<arg>where PostalCode = '98011' 26</arg>
+<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to
+True to run command without an explicit transaction commit or rollback.</doc>
+<msg timestamp="20230429 12:07:40.248" level="INFO">Executing : Execute SQL String  |  Select count(*) from AdventureWorks2019.Person.Address </msg>
+<status status="PASS" starttime="20230429 12:07:40.248" endtime="20230429 12:07:40.253"/>
+</kw>
+<doc>This testcase verifies that postal code 98011 has a row count equal to 26</doc>
+<status status="PASS" starttime="20230429 12:07:40.162" endtime="20230429 12:07:40.253"/>
+</test>
+<test id="s1-s1-t2" name="Verify row count is 7 for postal code 75201" line="26">
+<kw name="Connect DB">
+<kw name="Connect To Database" library="DatabaseLibrary">
+<arg>pymssql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_Password}</arg>
+<arg>${DB_Host}</arg>
+<arg>${DB_Port}</arg>
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
+connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
+<msg timestamp="20230429 12:07:40.255" level="INFO">Connecting using : pymssql.connect(database=AdventureWorks2019, user=robot, password=12345, host=DESKTOP-M531GVI, port=1433) </msg>
+<status status="PASS" starttime="20230429 12:07:40.254" endtime="20230429 12:07:40.304"/>
+</kw>
+<status status="PASS" starttime="20230429 12:07:40.254" endtime="20230429 12:07:40.304"/>
+</kw>
+<kw name="Execute Sql String" library="DatabaseLibrary">
+<arg>Select count(*) from AdventureWorks2019.Person.Address</arg>
+<arg>where PostalCode = '75201' 7</arg>
+<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to
+True to run command without an explicit transaction commit or rollback.</doc>
+<msg timestamp="20230429 12:07:40.307" level="INFO">Executing : Execute SQL String  |  Select count(*) from AdventureWorks2019.Person.Address </msg>
+<status status="PASS" starttime="20230429 12:07:40.306" endtime="20230429 12:07:40.335"/>
+</kw>
+<doc>This testcase verifies that postal code 75201 has a row count equal to 7</doc>
+<status status="PASS" starttime="20230429 12:07:40.254" endtime="20230429 12:07:40.336"/>
+</test>
+<test id="s1-s1-t3" name="Verify a Table is present or Not" line="32">
+<kw name="Table Must Exist" library="DatabaseLibrary">
+<arg>Store</arg>
+<doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
+explicit transaction commit or rollback.</doc>
+<msg timestamp="20230429 12:07:40.337" level="INFO">Executing : Table Must Exist  |  Store </msg>
+<msg timestamp="20230429 12:07:40.337" level="INFO">Executing : Row Count  |  SELECT * FROM information_schema.tables WHERE table_name='Store' </msg>
+<status status="PASS" starttime="20230429 12:07:40.337" endtime="20230429 12:07:40.373"/>
+</kw>
+<doc>This testcase verifies a tables exists within DB</doc>
+<status status="PASS" starttime="20230429 12:07:40.337" endtime="20230429 12:07:40.375"/>
+</test>
+<test id="s1-s1-t4" name="Verify the unitary price is different to Zero in table PurchaseOrderDetail. if there is a unit price equal to Zero it is an error" line="36">
+<kw name="Row Count Is Equal To X" library="DatabaseLibrary">
+<arg>Select UnitPrice from [Purchasing].[PurchaseOrderDetail] where UnitPrice = 0</arg>
+<arg>0</arg>
+<doc>Check if the number of rows returned from `selectStatement` is equal to the value submitted. If not, then this
+will throw an AssertionError. Set optional input `sansTran` to True to run command without an explicit
+transaction commit or rollback.</doc>
+<msg timestamp="20230429 12:07:40.379" level="INFO">Executing : Row Count Is Equal To X  |  Select UnitPrice from [Purchasing].[PurchaseOrderDetail] where UnitPrice = 0  |  0 </msg>
+<msg timestamp="20230429 12:07:40.379" level="INFO">Executing : Row Count  |  Select UnitPrice from [Purchasing].[PurchaseOrderDetail] where UnitPrice = 0 </msg>
+<status status="PASS" starttime="20230429 12:07:40.378" endtime="20230429 12:07:40.396"/>
+</kw>
+<doc>this testcase verifies the unitary price is different to Zero in table PurchaseOrderDetail</doc>
+<status status="PASS" starttime="20230429 12:07:40.376" endtime="20230429 12:07:40.407"/>
+</test>
+<test id="s1-s1-t5" name="Verify Successful creation of table" line="40">
+<kw name="Execute Sql String" library="DatabaseLibrary">
+<var>${output}</var>
+<arg>Create table PersonsTest(PersonID int, FirstName varchar(255));</arg>
+<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to
+True to run command without an explicit transaction commit or rollback.</doc>
+<msg timestamp="20230429 12:07:40.409" level="INFO">Executing : Execute SQL String  |  Create table PersonsTest(PersonID int, FirstName varchar(255)); </msg>
+<msg timestamp="20230429 12:07:40.418" level="FAIL">OperationalError: (2714, b"There is already an object named 'PersonsTest' in the database.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")</msg>
+<status status="FAIL" starttime="20230429 12:07:40.409" endtime="20230429 12:07:40.420"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${output}</arg>
+<arg>None</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230429 12:07:40.422" endtime="20230429 12:07:40.422"/>
+</kw>
+<doc>this test case verifies that user is able to create a table successfully</doc>
+<status status="FAIL" starttime="20230429 12:07:40.408" endtime="20230429 12:07:40.422">OperationalError: (2714, b"There is already an object named 'PersonsTest' in the database.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")</status>
+</test>
+<doc>Database Testing in robot framework</doc>
+<status status="FAIL" starttime="20230429 12:07:40.097" endtime="20230429 12:07:40.423"/>
+</suite>
+<status status="FAIL" starttime="20230429 12:07:40.077" endtime="20230429 12:07:40.424"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="1" skip="0" id="s1" name="Bkp">Bkp</stat>
+<stat pass="4" fail="1" skip="0" id="s1-s1" name="DatabaseConnection">Bkp.DatabaseConnection</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
